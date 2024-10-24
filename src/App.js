@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
 import logo from "./images/logo.png";
 import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
+import { useDispatch } from "react-redux";
+import { getPosts } from "./actions/posts";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
     <Container maxWidth="lg">
       <AppBar
         sx={{
-          borderRadius: 10,
-          margin: "30px 0",
+          borderRadius: 5,
+          margin: "30px 0px",
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "white",
+          padding: "10px",
         }}
         position="static"
         color="inherit"
@@ -35,7 +43,7 @@ const App = () => {
             fontWeight: "600",
             textAlign: "start",
           }}
-          variant="h2"
+          variant="h3"
         >
           Positive Negativity
         </Typography>
