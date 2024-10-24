@@ -3,16 +3,40 @@ import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
 import logo from "./images/logo.png";
 import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
-import useStyles from "./styles";
 
 const App = () => {
-  const classes = useStyles();
-
   return (
     <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <img src={logo} alt="logo" height={60} className={classes.image} />
-        <Typography className={classes.heading} variant="h2">
+      <AppBar
+        sx={{
+          borderRadius: 10,
+          margin: "30px 0",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "white",
+        }}
+        position="static"
+        color="inherit"
+      >
+        <img
+          src={logo}
+          alt="logo"
+          height={60}
+          style={{
+            marginRight: 20,
+            marginLeft: 20,
+          }}
+        />
+        <Typography
+          sx={{
+            color: "#cc0000",
+            fontWeight: "600",
+            textAlign: "start",
+          }}
+          variant="h2"
+        >
           Positive Negativity
         </Typography>
       </AppBar>
