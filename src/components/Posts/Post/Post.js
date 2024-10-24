@@ -49,7 +49,7 @@ const Post = ({ post, setCurrentId }) => {
       >
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">
-          {moment(post.creatorAt).fromNow()}
+          {moment(post.createdAt).fromNow()}
         </Typography>
       </div>
       <div
@@ -72,7 +72,8 @@ const Post = ({ post, setCurrentId }) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          margin: "10px 20px 0px 20px",
+          marginTop: "5px",
+          marginLeft: "15px",
         }}
       >
         <Typography variant="body2" color="textSecondary">
@@ -87,8 +88,24 @@ const Post = ({ post, setCurrentId }) => {
       >
         {post.title}
       </Typography>
-      <CardContent>
-        <Typography variant="body2" gutterBottom>
+      <CardContent
+        sx={{
+          height: "150px",
+        }}
+      >
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          sx={{
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 6,
+            lineHeight: "1.5",
+            maxHeight: "150px",
+          }}
+        >
           {post.message}
         </Typography>
       </CardContent>
@@ -105,7 +122,7 @@ const Post = ({ post, setCurrentId }) => {
           onClick={() => dispatch(likePost(post._id))}
         >
           <ThumbUpAltIcon fontSize="small" />
-          Like
+          &nbsp; Like &nbsp;
           {post.likeCount}
         </Button>
         <Button

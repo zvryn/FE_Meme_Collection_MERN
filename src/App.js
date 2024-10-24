@@ -5,8 +5,10 @@ import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
 import { useDispatch } from "react-redux";
 import { getPosts } from "./actions/posts";
+import { useTheme } from "@mui/material/styles";
 
 const App = () => {
+  const theme = useTheme();
   const [currentId, setCurrentId] = useState(null);
 
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const App = () => {
           sx={{
             color: "#cc0000",
             fontWeight: "600",
-            textAlign: "start",
+            textAlign: "center",
           }}
           variant="h3"
         >
@@ -57,11 +59,16 @@ const App = () => {
             justifyContent="space-between"
             alignItems="stretch"
             spacing={3}
+            sx={{
+              [theme.breakpoints.down("md")]: {
+                flexDirection: "column-reverse",
+              },
+            }}
           >
-            <Grid item xs={12} sm={7}>
+            <Grid item sm={12} md={7}>
               <Posts setCurrentId={setCurrentId} />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item sm={12} md={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
