@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import FileBase from "react-file-base64";
+import { useDispatch } from "react-redux";
+import { createPosts } from "../../actions/posts";
 
 const Form = () => {
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createPosts(postData));
+  };
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -26,7 +33,7 @@ const Form = () => {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          "& .MuiTextField-root": {
+          "& .MuiTextFieldRoot": {
             margin: "8px",
           },
         }}
@@ -34,6 +41,7 @@ const Form = () => {
       >
         <Typography variant="h6">Creating A Post</Typography>
         <TextField
+          sx={{ marginTop: 2 }}
           name="creator"
           variant="outlined"
           label="Creator"
@@ -44,6 +52,7 @@ const Form = () => {
           }
         />
         <TextField
+          sx={{ marginTop: 2 }}
           name="title"
           variant="outlined"
           label="Title"
@@ -52,6 +61,7 @@ const Form = () => {
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <TextField
+          sx={{ marginTop: 2 }}
           name="message"
           variant="outlined"
           label="Message"
@@ -62,6 +72,7 @@ const Form = () => {
           }
         />
         <TextField
+          sx={{ marginTop: 2 }}
           name="tags"
           variant="outlined"
           label="Tags"
@@ -72,7 +83,7 @@ const Form = () => {
         <div
           style={{
             width: "97%",
-            margin: "10px 0",
+            margin: "20px 0",
           }}
         >
           <FileBase
