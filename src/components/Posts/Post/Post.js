@@ -28,7 +28,7 @@ const Post = ({ post }) => {
       <CardMedia
         sx={{
           height: 0,
-          paddingTop: "56.25%",
+          paddingTop: "100%",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           backgroundBlendMode: "darken",
         }}
@@ -64,7 +64,7 @@ const Post = ({ post }) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          margin: "20px",
+          margin: "10px 20px 0px 20px",
         }}
       >
         <Typography variant="body2" color="textSecondary">
@@ -74,9 +74,9 @@ const Post = ({ post }) => {
       <CardContent>
         <Typography
           sx={{
-            padding: "0 16px",
+            padding: "0px 16px",
           }}
-          variant="h5"
+          variant="h6"
           gutterBottom
         >
           {post.message}
