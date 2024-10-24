@@ -118,7 +118,7 @@ const Form = () => {
             },
           }}
           variant="contained"
-          size="small"
+          size="large"
           onClick={clear}
           fullWidth
         >
