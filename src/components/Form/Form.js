@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createPosts } from "../../actions/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { createPosts, updatePost } from "../../actions/posts";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPosts(postData));
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPosts(postData));
+    }
+    clear();
   };
+
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -19,7 +25,26 @@ const Form = () => {
     selectedFile: "",
   });
 
-  const clear = () => {};
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (post) {
+      setPostData(post);
+    }
+  }, [post]);
+
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
   return (
     <Paper
       sx={{
@@ -39,7 +64,9 @@ const Form = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating A Post</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing" : "Creating"} A Post
+        </Typography>
         <TextField
           sx={{ marginTop: 2 }}
           name="creator"
